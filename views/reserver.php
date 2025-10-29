@@ -23,7 +23,7 @@
                 <button type="submit">Réserver</button>
             </form>
 
-            <p><a href="/spectacles">← Retour à la liste</a></p>
+            <p><a href="/spectacles">Retour à la liste</a></p>
         <?php endif; ?>
     </body>
 </html>

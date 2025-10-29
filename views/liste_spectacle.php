@@ -13,6 +13,6 @@
                 echo "<hr>";
             }
         ?>
-        <p><a href='/'>← Retour à l'accueil</a></p>
+        <p><a href='/'>Retour à l'accueil</a></p>
     </body>
 </html>

@@ -10,9 +10,9 @@
     
     <form method="post">
         <label>Nom :<br><input type="text" name="nom" required></label><br><br>
-        <label>Lieu :<br><input type="text" name="lieu" required></label><br><br>
-        <label>Prix (€) :<br><input type="number" name="prix_eur" step="0.01" required></label><br><br>
-        <label>Date :<br><input type="date" name="date" required></label><br><br>
+        <label>Lieu :<input type="text" name="lieu" required></label><br><br>
+        <label>Prix (€) :<input type="number" name="prix_eur" required></label><br><br>
+        <label>Date :<input type="date" name="date" required></label><br><br>
         <button type="submit">Ajouter</button>
     </form>
     

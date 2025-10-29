@@ -6,7 +6,7 @@
 <body>
     <h1>Mon profil</h1>
     
-    <p>Bienvenue, <strong><?php echo htmlspecialchars($_SESSION['user']); ?></strong> !</p>
+    <p>Bienvenue, <strong><?php echo ($_SESSION['user']); ?></strong> !</p>
     
     <hr>
     
@@ -31,13 +31,13 @@
         foreach ($_SESSION['reservations'] as $reservation) {
             $total = $reservation['price'] * $reservation['qty'];
             echo "<tr>";
-            echo "<td>" . htmlspecialchars($reservation['title']) . "</td>";
-            echo "<td>" . htmlspecialchars($reservation['date']) . "</td>";
-            echo "<td>" . htmlspecialchars($reservation['price']) . " €</td>";
-            echo "<td>" . htmlspecialchars($reservation['name']) . "</td>";
-            echo "<td>" . htmlspecialchars($reservation['qty']) . "</td>";
-            echo "<td>" . number_format($total, 2) . " €</td>";
-            echo "<td>" . htmlspecialchars(date('d/m/Y H:i', strtotime($reservation['reserved_at']))) . "</td>";
+            echo "<td>" . ($reservation['title']) . "</td>";
+            echo "<td>" . ($reservation['date']) . "</td>";
+            echo "<td>" . ($reservation['price']) . " €</td>";
+            echo "<td>" . ($reservation['name']) . "</td>";
+            echo "<td>" . ($reservation['qty']) . "</td>";
+            echo "<td>" . ($total) . " €</td>";
+            echo "<td>" . (date('d/m/Y H:i', strtotime($reservation['reserved_at']))) . "</td>";
             echo "</tr>";
         }
         
@@ -47,8 +47,7 @@
     
     <br>
     <p>
-        <a href="/">← Retour à l'accueil</a> | 
-        <a href="/spectacles">Liste des spectacles</a>
+        <a href="/">Retour à l'accueil</a> | <a href="/spectacles">Liste des spectacles</a>
     </p>
 </body>
 </html>
