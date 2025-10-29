@@ -65,7 +65,7 @@
             setcookie('access_token', $accessToken, time() + self::ACCESS_TTL, '/', '', false, true);
             setcookie('refresh_token', $refreshToken, time() + self::REFRESH_TTL, '/', '', false, true);
             
-            header('Location: /');
+            header('Location: /AuthSite/');
             exit;
         }
         
@@ -96,7 +96,7 @@
             session_destroy();
             setcookie('access_token', '', time() - 3600, '/');
             setcookie('refresh_token', '', time() - 3600, '/');
-            header('Location: /');
+            header('Location: /AuthSite/');
             exit;
         }
     }

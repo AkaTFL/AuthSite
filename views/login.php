@@ -10,7 +10,7 @@
         <p style="color: red;"><strong><?php echo htmlspecialchars($error); ?></strong></p>
     <?php endif; ?>
     
-    <form method="post" action="/login">
+    <form method="post" action="/AuthSite/login">
         <label>Nom d'utilisateur :<br>
             <input type="text" name="username" required>
         </label><br><br>
@@ -23,6 +23,6 @@
     </form>
     
     <p><small>Test : admin/admin ou user/user</small></p>
-    <p><a href="/">← Retour à l'accueil</a></p>
+    <p><a href="/AuthSite/">← Retour à l'accueil</a></p>
 </body>
 </html>

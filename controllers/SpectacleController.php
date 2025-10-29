@@ -32,7 +32,7 @@
         
         public function ajoutForm() {
             if (!isset($_SESSION['user']) || $_SESSION['role'] != 'admin') {
-                header('Location: /login');
+                header('Location: /AuthSite/login');
                 exit;
             }
             
@@ -42,7 +42,7 @@
         
         public function ajouter() {
             if (!isset($_SESSION['user']) || $_SESSION['role'] != 'admin') {
-                header('Location: /login');
+                header('Location: /AuthSite/login');
                 exit;
             }
             

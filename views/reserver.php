@@ -6,7 +6,7 @@
     <body>
         <?php if (isset($success) && $success): ?>
             <p>✅ Réservation enregistrée pour <strong><?php echo $spectacle['nom']; ?></strong> (<?php echo $qty; ?> billet(s)).</p>
-            <p><a href="/profil">Voir mes réservations</a> | <a href="/spectacles">Retour à la liste</a></p>
+            <p><a href="/AuthSite/profil">Voir mes réservations</a> | <a href="/AuthSite/spectacles">Retour à la liste</a></p>
         <?php else: ?>
             <h1>Réserver : <?php echo $spectacle['nom']; ?></h1>
             <p>Date : <?php echo $spectacle['date']; ?></p>
@@ -23,7 +23,7 @@
                 <button type="submit">Réserver</button>
             </form>
 
-            <p><a href="/spectacles">Retour à la liste</a></p>
+            <p><a href="/AuthSite/spectacles">Retour à la liste</a></p>
         <?php endif; ?>
     </body>
 </html>

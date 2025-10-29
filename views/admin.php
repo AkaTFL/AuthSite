@@ -16,6 +16,6 @@
         <button type="submit">Ajouter</button>
     </form>
     
-    <p><a href="/">Accueil</a> | <a href="/spectacles">Liste</a></p>
+    <p><a href="/AuthSite/">Accueil</a> | <a href="/AuthSite/spectacles">Liste</a></p>
 </body>
 </html>

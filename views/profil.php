@@ -47,7 +47,7 @@
     
     <br>
     <p>
-        <a href="/">Retour à l'accueil</a> | <a href="/spectacles">Liste des spectacles</a>
+        <a href="/AuthSite/">Retour à l'accueil</a> | <a href="/AuthSite/spectacles">Liste des spectacles</a>
     </p>
 </body>
 </html>
