@@ -2,8 +2,10 @@
 <html lang="fr">
 <head>
     <title>Informations spectacle</title>
+    <link rel="stylesheet" href="/AuthSite/assets/style.css">
 </head>
 <body>
+    <div class="container">
     <?php if ($spectacle_trouve === null): ?>
         <p>Aucun spectacle spécifié ou spectacle non trouvé.</p>
     <?php else: ?>
@@ -19,5 +21,6 @@
     |
     <a href="/AuthSite/spectacles">Retour à la liste</a>
     <?php endif; ?>
+    </div>
 </body>
 </html>
