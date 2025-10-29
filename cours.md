@@ -10,10 +10,10 @@ On veut un site de spectacles.
 Les cas d'utilisation sont :
 <!-- - Pages d'accueil (publique) -->
 <!-- - Page de la liste des spectacles (publique) -->
-- Page de fiche des spectacles (publique)  page à faire
+<!-- - Page de fiche des spectacles (publique) -->
 <!-- - Réservation de places (authentification requise) -->
 <!-- - Accéder à son profils : liste des billets que j'ai reservé (authentification requise) page à faire -->
-<!-- - Ajouter des spectacles (authentification requise + rôle admin) page à faire -->
+- Ajouter des spectacles (authentification requise + rôle admin) page à faire
 
 Concernant les données, il n'y a pas d'obligations d'avoir une BDD
 
