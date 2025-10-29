@@ -14,6 +14,8 @@
             $method = $_SERVER['REQUEST_METHOD'];
             $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+            $path = str_replace('/AuthSite', '', $path);
+
             $query = $_SERVER['QUERY_STRING'];
             
             if (!isset($this->routes[$method][$path])) {
