@@ -13,9 +13,8 @@ class Router {
     public function resolve() {
         $method = $_SERVER['REQUEST_METHOD'];
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        
-        // Garder les query strings pour compatibilité
-        $query = $_SERVER['QUERY_STRING'] ?? '';
+
+        $query = $_SERVER['QUERY_STRING'];
         
         if (!isset($this->routes[$method][$path])) {
             http_response_code(404);

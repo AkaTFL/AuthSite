@@ -1,58 +1,130 @@
-# AuthSite - Architecture MVC avec Routeur
+# AuthSite - Site de réservation de spectacles# AuthSite - Site de réservation de spectacles# AuthSite - Site de réservation de spectacles
 
-## 📁 Nouvelle structure du projet
+
+
+## 📁 Structure
+
+## 🚀 Démarrer le projet
 
 ```
-AuthSite/
-├── index.php                          # Point d'entrée unique
-├── Router.php                         # Classe routeur
-├── .htaccess                          # Configuration Apache
-├── controllers/                       # Contrôleurs (logique métier)
-│   ├── SpectacleController.php
-│   ├── ReservationController.php
-│   └── ProfilController.php
-├── views/                             # Vues (HTML/affichage)
-│   ├── accueil.php
-│   ├── liste_spectacle.php
-│   ├── infos_spectacle.php
-│   ├── reserver.php
-│   ├── profil.php
-│   └── admin.php
-├── donnees/
-│   └── spectacles.php                 # Données des spectacles
-└── [anciens fichiers]                 # À supprimer ou archiver
+
+AuthSite/**Système à 2 tokens :**
+
+├── index.php              # Point d'entrée + routes
+
+├── Router.php             # Routeur- **Access token** (5 min) - vérifié à chaque requête### Installation
+
+├── .htaccess              # Config Apache
+
+├── controllers/           # Logique métier- **Refresh token** (24h) - renouvelle l'access token automatiquement . Cloner le projet dans le dossier web de votre serveur :
+
+├── views/                 # Affichage HTML
+
+└── donnees/spectacles.php # Données   ```bash
+
 ```
 
-## 🎯 Cas d'utilisation et leurs routes
+**Comptes test :**   cd C:\xampp\htdocs
 
-| Cas d'utilisation | Méthode | Route | Contrôleur | Authentification |
-|-------------------|---------|-------|------------|------------------|
-| Page d'accueil | GET | `/` | SpectacleController@accueil | Non |
-| Liste des spectacles | GET | `/spectacles` | SpectacleController@liste | Non |
-| Détails d'un spectacle | GET | `/spectacles/details?spectacle_id=X` | SpectacleController@details | Non |
-| Formulaire de réservation | GET | `/reserver?spectacle_id=X` | ReservationController@form | Oui |
-| Enregistrer une réservation | POST | `/reserver?spectacle_id=X` | ReservationController@reserver | Oui |
-| Page profil | GET | `/profil` | ProfilController@index | Oui |
-| Formulaire d'ajout spectacle | GET | `/admin` | SpectacleController@ajoutForm | Oui (Admin) |
-| Ajouter un spectacle | POST | `/admin` | SpectacleController@ajouter | Oui (Admin) |
+## 🚀 Installation
 
-## 🚀 Fonctionnement
+- `admin` / `admin` (rôle admin)   git clone https://github.com/AkaTFL/AuthSite.git
 
-### Routeur (`Router.php`)
-- Intercepte toutes les requêtes via `.htaccess`
-- Analyse la méthode HTTP (GET/POST) et le chemin
-- Appelle le bon contrôleur avec la bonne méthode
+```bash
 
-### Contrôleurs
-Chaque contrôleur contient des méthodes qui :
-1. Vérifient l'authentification si nécessaire
-2. Récupèrent/traitent les données
-3. Chargent la vue correspondante
+cd C:\xampp\htdocs- `user` / `user` (rôle user)   ```
 
-### Vues
-Fichiers HTML/PHP purs qui :
-- Reçoivent les données des contrôleurs
-- Affichent le contenu
-- Ne contiennent pas de logique métier
+git clone https://github.com/AkaTFL/AuthSite.git
 
-**Important :** Si `.htaccess` ne fonctionne pas, vérifier que `mod_rewrite` est activé dans Apache.
+```
+
+
+
+Accès : `http://localhost/AuthSite/`**Format token :** `base64(username|expiration|signature)`2. Démarrer Apache
+
+
+
+## 🔐 Authentification
+
+
+
+**Système à 2 tokens :**## 🎯 Routes3. Accéder au site :
+
+- **Access token** (5 min) - vérifié à chaque requête
+
+- **Refresh token** (24h) - renouvelle l'access token automatiquement   ```
+
+
+
+**Comptes test :**| URL | Auth | Description |   http://localhost/AuthSite/
+
+- `admin` / `admin` (rôle admin)
+
+- `user` / `user` (rôle user)|-----|------|-------------|   ```
+
+
+
+**Format token :** `base64(username|expiration|signature)`| `/` | - | Accueil |
+
+
+
+## 🎯 Routes| `/spectacles` | - | Liste |### URLs disponibles
+
+
+
+| URL | Auth | Description || `/spectacles/details?spectacle_id=X` | - | Détails |- `/` - Accueil
+
+|-----|------|-------------|
+
+| `/` | - | Accueil || `/login` | - | Connexion |- `/spectacles` - Liste des spectacles
+
+| `/spectacles` | - | Liste |
+
+| `/spectacles/details?spectacle_id=X` | - | Détails || `/logout` | - | Déconnexion |- `/reserver?spectacle_id=X` - Réserver (connexion requise)
+
+| `/login` | - | Connexion |
+
+| `/logout` | - | Déconnexion || `/reserver?spectacle_id=X` | ✓ | Réserver |- `/profil` - Mes réservations (connexion requise)
+
+| `/reserver?spectacle_id=X` | ✓ | Réserver |
+
+| `/profil` | ✓ | Mes réservations || `/profil` | ✓ | Mes réservations |- `/admin` - Ajouter un spectacle (connexion requise ainsi que role admin)
+
+| `/admin` | Admin | Ajouter spectacle |
+
+| `/admin` | Admin | Ajouter spectacle |
+
+## ⚙️ Fonctionnement
+
+## 🎯 Routes et contrôleurs
+
+`.htaccess` → `index.php` → `Router` → `Controller` → `View`
+
+## ⚙️ Fonctionnement
+
+**Contrôleurs :** Vérifient auth, traitent données, chargent vue  
+
+**Vues :** Affichent HTML  | Route | Méthode | Contrôleur | Auth |
+
+**Tokens :** Stockés en cookies, renouvelés auto
+
+`.htaccess` → `index.php` → `Router` → `Controller` → `View`|-------|---------|------------|------|
+
+| `/` | GET | SpectacleController@accueil | - |
+
+**Contrôleurs :** Vérifient auth, traitent données, chargent vue  | `/spectacles` | GET | SpectacleController@liste | - |
+
+**Vues :** Affichent HTML  | `/spectacles/details` | GET | SpectacleController@details | - |
+
+**Tokens :** Stockés en cookies, renouvelés auto| `/reserver` | GET/POST | ReservationController | ✓ |
+
+| `/profil` | GET | ProfilController@index | ✓ |
+| `/admin` | GET/POST | SpectacleController | Admin |
+
+## � Fonctionnement
+
+**Routeur :** `.htaccess` redirige tout vers `index.php` → `Router.php` analyse l'URL → appelle le bon contrôleur
+
+**Contrôleurs :** Vérifient l'authentification, récupèrent les données et chargent la vue
+
+**Vues :** Affichent le HTML avec les données reçues
