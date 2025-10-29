@@ -2,8 +2,10 @@
 <html lang="fr">
 <head>
     <title>Informations spectacle</title>
+    <link rel="stylesheet" href="/AuthSite/assets/style.css">
 </head>
 <body>
+    <div class="container">
     <?php if ($spectacle_trouve === null): ?>
         <p>Aucun spectacle spécifié ou spectacle non trouvé.</p>
     <?php else: ?>
@@ -14,10 +16,11 @@
         <p><strong>Prix :</strong> <?php echo $spectacle_trouve['prix_eur']; ?> €</p>
         <p><strong>Date :</strong> <?php echo $spectacle_trouve['date']; ?></p>
         
-        <br>
-        <a href="/reserver?spectacle_id=<?php echo $spectacle_trouve['id']; ?>">Réserver ce spectacle</a>
-        |
-        <a href="/spectacles">Retour à la liste</a>
+    <br>
+    <a href="/AuthSite/reserver?spectacle_id=<?php echo $spectacle_trouve['id']; ?>">Réserver ce spectacle</a>
+    |
+    <a href="/AuthSite/spectacles">Retour à la liste</a>
     <?php endif; ?>
+    </div>
 </body>
 </html>

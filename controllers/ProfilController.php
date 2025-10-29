@@ -3,7 +3,7 @@
         
         public function index() {
             if (!isset($_SESSION['user'])) {
-                header('Location: /login');
+                header('Location: /AuthSite/login');
                 exit;
             }
             

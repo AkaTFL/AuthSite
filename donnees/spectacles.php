@@ -1,92 +1,104 @@
 <?php
-    function random_price(float $min = 5.0, float $max = 120.0): float {
-        $cents = rand((int)round($min * 100), (int)round($max * 100));
-        return $cents / 100;
-    }
-
-    function random_date(string $start, string $end): string {
-        // renvoie une date ISO (YYYY-MM-DD) entre deux bornes
-        $timestamp = rand(strtotime($start), strtotime($end));
-        return date('Y-m-d', $timestamp);
-    }
-
-    $adjectifs = [
-        "Nocturne","Enchanté","Éphémère","Merveilleux","Déroutant","Électrique","Sublime",
-        "Baroque","Moderne","Intime","Grand","Lumineux","Mystérieux","Poétique","Féroce",
-        "Romantique","Comique","Impromptu","Audacieux","Rêveur"
-    ];
-
-    $noms = [
-        "Voyage","Mascarade","Résonance","Rêve","Odyssée","Chimère","Rhapsodie","Fugue",
-        "Boulevard","Carnaval","Cabaret","Balade","Collision","Murmure","Tempête","Mirage",
-        "Symphonie","Éclipse","Étreinte","Écho","Parade","Noël","Printemps","Automne","Horizon"
-    ];
-
-    $genres = [
-        "théâtral","musical","de danse","d'improvisation","de marionnettes","de cirque",
-        "d'opéra","humoristique","pour enfants","de magie","expérimental","poétique",
-    ];
-
-    $venues_names = [
-        "Théâtre du Solstice","Salle des Fêtes","La Scène du Nord","Espace Lumière",
-        "Petit Théâtre des Arts","Grande Halle","La Cartoucherie","Forum Saint-Martin",
-        "La Fabrique","La Rotonde","Studio 12","L'Auditorium","Le Colombier","Le Carreau",
-        "Le Cloître","Salle Henri IV","Théâtre des Remparts","La Verrière","La Nef","Le Carillon"
-    ];
-
-    $street_names = [
-        "rue Victor Hugo","avenue des Arts","boulevard Saint-Germain","place de la République",
-        "impasse des Lilas","ruelle du Marché","avenue du Parc","rue de la Paix",
-        "allée des Tilleuls","place Jean Jaurès","rue des Écoles","place du Château",
-        "quai des Vergers","boulevard des Fleurs","rue du Pont"
-    ];
-
-    $villes = [
-        "Paris","Lyon","Marseille","Toulouse","Bordeaux","Lille","Nice","Nantes","Strasbourg",
-        "Montpellier","Rennes","Reims","Le Havre","Saint-Étienne","Toulon","Grenoble","Dijon",
-        "Angers","Nîmes","Villeurbanne"
-    ];
-
-    $spectacles = [];
-    $usedTitles = [];
-
-    $target = 100;
-    for ($i = 0; $i < $target; $i++) {
-        // Génération du titre unique
-        $adj = $adjectifs[array_rand($adjectifs)];
-        $nom = $noms[array_rand($noms)];
-        $genre = $genres[array_rand($genres)];
-
-        $titleBase = "$adj $nom";
-        $title = $titleBase;
-        $suffix = 1;
-        while (in_array($title, $usedTitles)) {
-            $title = $titleBase . " — " . $suffix;
-            $suffix++;
-        }
-        $usedTitles[] = $title;
-
-        // Génération du lieu
-        $venue = $venues_names[array_rand($venues_names)];
-        $street = $street_names[array_rand($street_names)];
-        $numero = rand(1, 120);
-        $ville = $villes[array_rand($villes)];
-        $lieu = sprintf("%s, %d %s, %s", $venue, $numero, $street, $ville);
-
-        // Prix et date
-        $prix = random_price(5.0, 120.0);
-        $date = random_date('2025-11-01', '2026-06-30');
-
-        // Ajout dans le tableau
-        $spectacles[] = [
-            'id' => $i + 1,
-            'nom' => $title,
-            'lieu' => $lieu,
-            'prix_eur' => $prix,
-            'date' => $date
-        ];
-    }
-
-    // On retourne le tableau final
-    return $spectacles;
+return [
+    ["id"=>1,"nom"=>"Nocturne Voyage","ville"=>"Paris","rue"=>"rue Victor Hugo","genre"=>"théâtral","lieu"=>"Théâtre du Solstice, 12 rue Victor Hugo, Paris","prix_eur"=>25.00,"date"=>"2026-01-10"],
+    ["id"=>2,"nom"=>"Enchanté Résonance","ville"=>"Lyon","rue"=>"avenue des Arts","genre"=>"musical","lieu"=>"Salle des Fêtes, 8 avenue des Arts, Lyon","prix_eur"=>22.50,"date"=>"2026-01-15"],
+    ["id"=>3,"nom"=>"Éphémère Rêve","ville"=>"Marseille","rue"=>"boulevard Saint-Germain","genre"=>"de danse","lieu"=>"La Scène du Nord, 5 boulevard Saint-Germain, Marseille","prix_eur"=>18.00,"date"=>"2026-01-20"],
+    ["id"=>4,"nom"=>"Merveilleux Odyssée","ville"=>"Toulouse","rue"=>"place de la République","genre"=>"humoristique","lieu"=>"Espace Lumière, 2 place de la République, Toulouse","prix_eur"=>15.00,"date"=>"2026-01-25"],
+    ["id"=>5,"nom"=>"Déroutant Chimère","ville"=>"Bordeaux","rue"=>"impasse des Lilas","genre"=>"de cirque","lieu"=>"Petit Théâtre des Arts, 27 impasse des Lilas, Bordeaux","prix_eur"=>30.00,"date"=>"2026-02-01"],
+    ["id"=>6,"nom"=>"Électrique Rhapsodie","ville"=>"Lille","rue"=>"ruelle du Marché","genre"=>"musical","lieu"=>"Grande Halle, 3 ruelle du Marché, Lille","prix_eur"=>28.00,"date"=>"2026-02-05"],
+    ["id"=>7,"nom"=>"Sublime Fugue","ville"=>"Nice","rue"=>"avenue du Parc","genre"=>"classique","lieu"=>"La Cartoucherie, 41 avenue du Parc, Nice","prix_eur"=>35.00,"date"=>"2026-02-10"],
+    ["id"=>8,"nom"=>"Baroque Boulevard","ville"=>"Nantes","rue"=>"rue de la Paix","genre"=>"d'opéra","lieu"=>"Forum Saint-Martin, 9 rue de la Paix, Nantes","prix_eur"=>40.00,"date"=>"2026-02-14"],
+    ["id"=>9,"nom"=>"Moderne Carnaval","ville"=>"Strasbourg","rue"=>"allée des Tilleuls","genre"=>"expérimental","lieu"=>"La Fabrique, 6 allée des Tilleuls, Strasbourg","prix_eur"=>20.00,"date"=>"2026-02-20"],
+    ["id"=>10,"nom"=>"Intime Cabaret","ville"=>"Montpellier","rue"=>"place Jean Jaurès","genre"=>"humoristique","lieu"=>"La Rotonde, 10 place Jean Jaurès, Montpellier","prix_eur"=>16.50,"date"=>"2026-02-25"],
+    ["id"=>11,"nom"=>"Grand Balade","ville"=>"Rennes","rue"=>"rue des Écoles","genre"=>"musical","lieu"=>"Studio 12, 7 rue des Écoles, Rennes","prix_eur"=>19.00,"date"=>"2026-03-01"],
+    ["id"=>12,"nom"=>"Lumineux Collision","ville"=>"Reims","rue"=>"place du Château","genre"=>"théâtral","lieu"=>"L\"Auditorium, 4 place du Château, Reims","prix_eur"=>24.00,"date"=>"2026-03-06"],
+    ["id"=>13,"nom"=>"Mystérieux Murmure","ville"=>"Le Havre","rue"=>"quai des Vergers","genre"=>"poétique","lieu"=>"Le Colombier, 2 quai des Vergers, Le Havre","prix_eur"=>17.50,"date"=>"2026-03-10"],
+    ["id"=>14,"nom"=>"Poétique Tempête","ville"=>"Saint-Étienne","rue"=>"boulevard des Fleurs","genre"=>"théâtral","lieu"=>"Le Carreau, 55 boulevard des Fleurs, Saint-Étienne","prix_eur"=>21.00,"date"=>"2026-03-15"],
+    ["id"=>15,"nom"=>"Féroce Mirage","ville"=>"Toulon","rue"=>"rue du Pont","genre"=>"de danse","lieu"=>"Le Cloître, 18 rue du Pont, Toulon","prix_eur"=>23.00,"date"=>"2026-03-20"],
+    ["id"=>16,"nom"=>"Romantique Symphonie","ville"=>"Grenoble","rue"=>"rue Victor Hugo","genre"=>"classique","lieu"=>"Salle Henri IV, 3 rue Victor Hugo, Grenoble","prix_eur"=>27.50,"date"=>"2026-03-25"],
+    ["id"=>17,"nom"=>"Comique Éclipse","ville"=>"Dijon","rue"=>"avenue des Arts","genre"=>"humoristique","lieu"=>"Théâtre des Remparts, 1 avenue des Arts, Dijon","prix_eur"=>14.00,"date"=>"2026-03-30"],
+    ["id"=>18,"nom"=>"Impromptu Étreinte","ville"=>"Angers","rue"=>"boulevard Saint-Germain","genre"=>"théâtral","lieu"=>"La Verrière, 6 boulevard Saint-Germain, Angers","prix_eur"=>18.50,"date"=>"2026-04-04"],
+    ["id"=>19,"nom"=>"Audacieux Écho","ville"=>"Nîmes","rue"=>"place de la République","genre"=>"musical","lieu"=>"La Nef, 22 place de la République, Nîmes","prix_eur"=>26.00,"date"=>"2026-04-09"],
+    ["id"=>20,"nom"=>"Rêveur Parade","ville"=>"Villeurbanne","rue"=>"impasse des Lilas","genre"=>"pour enfants","lieu"=>"Le Carillon, 12 impasse des Lilas, Villeurbanne","prix_eur"=>12.00,"date"=>"2026-04-14"],
+    ["id"=>21,"nom"=>"Nocturne Mirage","ville"=>"Clermont-Ferrand","rue"=>"ruelle du Marché","genre"=>"musical","lieu"=>"Théâtre du Solstice, 9 ruelle du Marché, Clermont-Ferrand","prix_eur"=>20.00,"date"=>"2026-04-19"],
+    ["id"=>22,"nom"=>"Enchanté Symphonie","ville"=>"Le Mans","rue"=>"avenue du Parc","genre"=>"classique","lieu"=>"Salle des Fêtes, 30 avenue du Parc, Le Mans","prix_eur"=>32.00,"date"=>"2026-04-24"],
+    ["id"=>23,"nom"=>"Éphémère Carnaval","ville"=>"Aix-en-Provence","rue"=>"rue de la Paix","genre"=>"comédie musicale","lieu"=>"La Scène du Nord, 4 rue de la Paix, Aix-en-Provence","prix_eur"=>29.00,"date"=>"2026-04-29"],
+    ["id"=>24,"nom"=>"Merveilleux Fugue","ville"=>"Brest","rue"=>"allée des Tilleuls","genre"=>"de magie","lieu"=>"Espace Lumière, 14 allée des Tilleuls, Brest","prix_eur"=>13.50,"date"=>"2026-05-04"],
+    ["id"=>25,"nom"=>"Déroutant Balade","ville"=>"Limoges","rue"=>"place Jean Jaurès","genre"=>"théâtral","lieu"=>"Petit Théâtre des Arts, 2 place Jean Jaurès, Limoges","prix_eur"=>16.00,"date"=>"2026-05-09"],
+    ["id"=>26,"nom"=>"Électrique Rêve","ville"=>"Perpignan","rue"=>"rue des Écoles","genre"=>"musical","lieu"=>"Grande Halle, 7 rue des Écoles, Perpignan","prix_eur"=>21.00,"date"=>"2026-05-14"],
+    ["id"=>27,"nom"=>"Sublime Voyage","ville"=>"Metz","rue"=>"place du Château","genre"=>"opéra","lieu"=>"La Cartoucherie, 11 place du Château, Metz","prix_eur"=>45.00,"date"=>"2026-05-19"],
+    ["id"=>28,"nom"=>"Baroque Mascarade","ville"=>"Besançon","rue"=>"quai des Vergers","genre"=>"théâtral","lieu"=>"Forum Saint-Martin, 6 quai des Vergers, Besançon","prix_eur"=>19.50,"date"=>"2026-05-24"],
+    ["id"=>29,"nom"=>"Moderne Odyssée","ville"=>"Orléans","rue"=>"boulevard des Fleurs","genre"=>"expérimental","lieu"=>"La Fabrique, 3 boulevard des Fleurs, Orléans","prix_eur"=>17.00,"date"=>"2026-05-29"],
+    ["id"=>30,"nom"=>"Intime Résonance","ville"=>"Mulhouse","rue"=>"rue du Pont","genre"=>"musical","lieu"=>"La Rotonde, 18 rue du Pont, Mulhouse","prix_eur"=>23.50,"date"=>"2026-06-03"],
+    ["id"=>31,"nom"=>"Grand Carnaval","ville"=>"Rouen","rue"=>"rue Victor Hugo","genre"=>"pour enfants","lieu"=>"Studio 12, 5 rue Victor Hugo, Rouen","prix_eur"=>11.00,"date"=>"2026-06-08"],
+    ["id"=>32,"nom"=>"Lumineux Cabaret","ville"=>"Caen","rue"=>"avenue des Arts","genre"=>"humoristique","lieu"=>"L\"Auditorium, 21 avenue des Arts, Caen","prix_eur"=>15.50,"date"=>"2026-06-13"],
+    ["id"=>33,"nom"=>"Mystérieux Balade","ville"=>"Nancy","rue"=>"boulevard Saint-Germain","genre"=>"théâtral","lieu"=>"Le Colombier, 2 boulevard Saint-Germain, Nancy","prix_eur"=>18.00,"date"=>"2026-06-18"],
+    ["id"=>34,"nom"=>"Poétique Fugue","ville"=>"Annecy","rue"=>"place de la République","genre"=>"poétique","lieu"=>"Le Carreau, 9 place de la République, Annecy","prix_eur"=>20.00,"date"=>"2026-06-23"],
+    ["id"=>35,"nom"=>"Féroce Écho","ville"=>"Avignon","rue"=>"impasse des Lilas","genre"=>"de cirque","lieu"=>"Le Cloître, 44 impasse des Lilas, Avignon","prix_eur"=>26.00,"date"=>"2026-06-28"],
+    ["id"=>36,"nom"=>"Romantique Mirage","ville"=>"Poitiers","rue"=>"ruelle du Marché","genre"=>"musical","lieu"=>"Salle Henri IV, 8 ruelle du Marché, Poitiers","prix_eur"=>19.00,"date"=>"2026-07-03"],
+    ["id"=>37,"nom"=>"Comique Éclipse","ville"=>"Pau","rue"=>"avenue du Parc","genre"=>"humoristique","lieu"=>"Théâtre des Remparts, 3 avenue du Parc, Pau","prix_eur"=>14.50,"date"=>"2026-07-08"],
+    ["id"=>38,"nom"=>"Impromptu Étreinte","ville"=>"La Rochelle","rue"=>"rue de la Paix","genre"=>"de danse","lieu"=>"La Verrière, 2 rue de la Paix, La Rochelle","prix_eur"=>22.00,"date"=>"2026-07-13"],
+    ["id"=>39,"nom"=>"Audacieux Parade","ville"=>"Cannes","rue"=>"allée des Tilleuls","genre"=>"comédie musicale","lieu"=>"La Nef, 6 allée des Tilleuls, Cannes","prix_eur"=>34.00,"date"=>"2026-07-18"],
+    ["id"=>40,"nom"=>"Rêveur Voyage","ville"=>"Antibes","rue"=>"place Jean Jaurès","genre"=>"musical","lieu"=>"Le Carillon, 1 place Jean Jaurès, Antibes","prix_eur"=>18.00,"date"=>"2026-07-23"],
+    ["id"=>41,"nom"=>"Nocturne Rêve","ville"=>"Lorient","rue"=>"rue des Écoles","genre"=>"théâtral","lieu"=>"Théâtre du Solstice, 7 rue des Écoles, Lorient","prix_eur"=>16.00,"date"=>"2026-07-28"],
+    ["id"=>42,"nom"=>"Enchanté Mascarade","ville"=>"Bayonne","rue"=>"place du Château","genre"=>"humoristique","lieu"=>"Salle des Fêtes, 12 place du Château, Bayonne","prix_eur"=>13.00,"date"=>"2026-08-02"],
+    ["id"=>43,"nom"=>"Éphémère Mirage","ville"=>"Calais","rue"=>"quai des Vergers","genre"=>"musical","lieu"=>"La Scène du Nord, 5 quai des Vergers, Calais","prix_eur"=>17.50,"date"=>"2026-08-07"],
+    ["id"=>44,"nom"=>"Merveilleux Odyssée","ville"=>"Colmar","rue"=>"boulevard des Fleurs","genre"=>"classique","lieu"=>"Espace Lumière, 9 boulevard des Fleurs, Colmar","prix_eur"=>28.00,"date"=>"2026-08-12"],
+    ["id"=>45,"nom"=>"Déroutant Rhapsodie","ville"=>"Perigueux","rue"=>"rue du Pont","genre"=>"théâtral","lieu"=>"Petit Théâtre des Arts, 3 rue du Pont, Périgueux","prix_eur"=>15.00,"date"=>"2026-08-17"],
+    ["id"=>46,"nom"=>"Électrique Résonnance","ville"=>"Chartres","rue"=>"rue Victor Hugo","genre"=>"musical","lieu"=>"Grande Halle, 18 rue Victor Hugo, Chartres","prix_eur"=>20.00,"date"=>"2026-08-22"],
+    ["id"=>47,"nom"=>"Sublime Mirage","ville"=>"Cahors","rue"=>"avenue des Arts","genre"=>"opéra","lieu"=>"La Cartoucherie, 4 avenue des Arts, Cahors","prix_eur"=>38.00,"date"=>"2026-08-27"],
+    ["id"=>48,"nom"=>"Baroque Tempête","ville"=>"Mâcon","rue"=>"place Jean Jaurès","genre"=>"théâtral","lieu"=>"Forum Saint-Martin, 2 place Jean Jaurès, Mâcon","prix_eur"=>18.50,"date"=>"2026-09-01"],
+    ["id"=>49,"nom"=>"Moderne Parade","ville"=>"Nevers","rue"=>"rue des Écoles","genre"=>"expérimental","lieu"=>"La Fabrique, 11 rue des Écoles, Nevers","prix_eur"=>16.50,"date"=>"2026-09-06"],
+    ["id"=>50,"nom"=>"Intime Voyage","ville"=>"Chartres","rue"=>"place de la République","genre"=>"musical","lieu"=>"La Rotonde, 6 place de la République, Chartres","prix_eur"=>21.00,"date"=>"2026-09-11"],
+    ["id"=>51,"nom"=>"Grand Rêve","ville"=>"Aurillac","rue"=>"rue Victor Hugo","genre"=>"théâtral","lieu"=>"Studio 12, 9 rue Victor Hugo, Aurillac","prix_eur"=>14.00,"date"=>"2026-09-16"],
+    ["id"=>52,"nom"=>"Lumineux Résonance","ville"=>"Bourges","rue"=>"avenue du Parc","genre"=>"musical","lieu"=>"L\"Auditorium, 3 avenue du Parc, Bourges","prix_eur"=>19.50,"date"=>"2026-09-21"],
+    ["id"=>53,"nom"=>"Mystérieux Balade","ville"=>"Cognac","rue"=>"rue de la Paix","genre"=>"poétique","lieu"=>"Le Colombier, 12 rue de la Paix, Cognac","prix_eur"=>17.00,"date"=>"2026-09-26"],
+    ["id"=>54,"nom"=>"Poétique Fugue","ville"=>"Blois","rue"=>"allée des Tilleuls","genre"=>"théâtral","lieu"=>"Le Carreau, 5 allée des Tilleuls, Blois","prix_eur"=>16.00,"date"=>"2026-10-01"],
+    ["id"=>55,"nom"=>"Féroce Éclipse","ville"=>"Vannes","rue"=>"impasse des Lilas","genre"=>"de cirque","lieu"=>"Le Cloître, 2 impasse des Lilas, Vannes","prix_eur"=>22.00,"date"=>"2026-10-06"],
+    ["id"=>56,"nom"=>"Romantique Étreinte","ville"=>"Châteauroux","rue"=>"ruelle du Marché","genre"=>"classique","lieu"=>"Salle Henri IV, 7 ruelle du Marché, Châteauroux","prix_eur"=>24.00,"date"=>"2026-10-11"],
+    ["id"=>57,"nom"=>"Comique Mirage","ville"=>"Tarbes","rue"=>"place Jean Jaurès","genre"=>"humoristique","lieu"=>"Théâtre des Remparts, 4 place Jean Jaurès, Tarbes","prix_eur"=>13.50,"date"=>"2026-10-16"],
+    ["id"=>58,"nom"=>"Impromptu Voyage","ville"=>"Mont-de-Marsan","rue"=>"rue des Écoles","genre"=>"musical","lieu"=>"La Verrière, 10 rue des Écoles, Mont-de-Marsan","prix_eur"=>15.00,"date"=>"2026-10-21"],
+    ["id"=>59,"nom"=>"Audacieux Rêve","ville"=>"Brive","rue"=>"place du Château","genre"=>"théâtral","lieu"=>"La Nef, 2 place du Château, Brive","prix_eur"=>18.00,"date"=>"2026-10-26"],
+    ["id"=>60,"nom"=>"Rêveur Carnival","ville"=>"Albi","rue"=>"quai des Vergers","genre"=>"pour enfants","lieu"=>"Le Carillon, 6 quai des Vergers, Albi","prix_eur"=>12.50,"date"=>"2026-10-31"],
+    ["id"=>61,"nom"=>"Nocturne Parade","ville"=>"Saint-Brieuc","rue"=>"boulevard des Fleurs","genre"=>"musical","lieu"=>"Théâtre du Solstice, 11 boulevard des Fleurs, Saint-Brieuc","prix_eur"=>17.00,"date"=>"2026-11-05"],
+    ["id"=>62,"nom"=>"Enchanté Carnaval","ville"=>"Cherbourg","rue"=>"rue du Pont","genre"=>"humoristique","lieu"=>"Salle des Fêtes, 8 rue du Pont, Cherbourg","prix_eur"=>14.00,"date"=>"2026-11-10"],
+    ["id"=>63,"nom"=>"Éphémère Rhapsodie","ville"=>"Romans","rue"=>"avenue des Arts","genre"=>"musical","lieu"=>"La Scène du Nord, 2 avenue des Arts, Romans","prix_eur"=>20.00,"date"=>"2026-11-15"],
+    ["id"=>64,"nom"=>"Merveilleux Mirage","ville"=>"Sète","rue"=>"rue Victor Hugo","genre"=>"théâtral","lieu"=>"Espace Lumière, 5 rue Victor Hugo, Sète","prix_eur"=>16.50,"date"=>"2026-11-20"],
+    ["id"=>65,"nom"=>"Déroutant Odyssée","ville"=>"Épinal","rue"=>"place Jean Jaurès","genre"=>"expérimental","lieu"=>"Petit Théâtre des Arts, 4 place Jean Jaurès, Épinal","prix_eur"=>18.50,"date"=>"2026-11-25"],
+    ["id"=>66,"nom"=>"Électrique Voyage","ville"=>"Alès","rue"=>"rue des Écoles","genre"=>"musical","lieu"=>"Grande Halle, 7 rue des Écoles, Alès","prix_eur"=>19.00,"date"=>"2026-11-30"],
+    ["id"=>67,"nom"=>"Sublime Résonance","ville"=>"Péronne","rue"=>"place du Château","genre"=>"classique","lieu"=>"La Cartoucherie, 3 place du Château, Péronne","prix_eur"=>23.00,"date"=>"2026-12-05"],
+    ["id"=>68,"nom"=>"Baroque Balade","ville"=>"Mende","rue"=>"quai des Vergers","genre"=>"théâtral","lieu"=>"Forum Saint-Martin, 6 quai des Vergers, Mende","prix_eur"=>15.50,"date"=>"2026-12-10"],
+    ["id"=>69,"nom"=>"Moderne Écho","ville"=>"Lannion","rue"=>"boulevard Saint-Germain","genre"=>"expérimental","lieu"=>"La Fabrique, 11 boulevard Saint-Germain, Lannion","prix_eur"=>14.50,"date"=>"2026-12-15"],
+    ["id"=>70,"nom"=>"Intime Carnaval","ville"=>"Dax","rue"=>"rue du Pont","genre"=>"humoristique","lieu"=>"La Rotonde, 9 rue du Pont, Dax","prix_eur"=>13.00,"date"=>"2026-12-20"],
+    ["id"=>71,"nom"=>"Grand Mirage","ville"=>"Saint-Lô","rue"=>"rue Victor Hugo","genre"=>"théâtral","lieu"=>"Studio 12, 5 rue Victor Hugo, Saint-Lô","prix_eur"=>16.00,"date"=>"2026-12-25"],
+    ["id"=>72,"nom"=>"Lumineux Voyage","ville"=>"Valence","rue"=>"avenue du Parc","genre"=>"musical","lieu"=>"L\"Auditorium, 4 avenue du Parc, Valence","prix_eur"=>18.00,"date"=>"2026-12-30"],
+    ["id"=>73,"nom"=>"Mystérieux Rêve","ville"=>"Montluçon","rue"=>"place Jean Jaurès","genre"=>"poétique","lieu"=>"Le Colombier, 3 place Jean Jaurès, Montluçon","prix_eur"=>15.00,"date"=>"2027-01-04"],
+    ["id"=>74,"nom"=>"Poétique Fugue","ville"=>"Evreux","rue"=>"rue des Écoles","genre"=>"théâtral","lieu"=>"Le Carreau, 10 rue des Écoles, Evreux","prix_eur"=>17.00,"date"=>"2027-01-09"],
+    ["id"=>75,"nom"=>"Féroce Parade","ville"=>"Vichy","rue"=>"place du Château","genre"=>"de cirque","lieu"=>"Le Cloître, 6 place du Château, Vichy","prix_eur"=>21.00,"date"=>"2027-01-14"],
+    ["id"=>76,"nom"=>"Romantique Odyssée","ville"=>"Belley","rue"=>"rue du Pont","genre"=>"classique","lieu"=>"Salle Henri IV, 2 rue du Pont, Belley","prix_eur"=>22.00,"date"=>"2027-01-19"],
+    ["id"=>77,"nom"=>"Comique Résonance","ville"=>"Oyonnax","rue"=>"rue Victor Hugo","genre"=>"humoristique","lieu"=>"Théâtre des Remparts, 7 rue Victor Hugo, Oyonnax","prix_eur"=>12.50,"date"=>"2027-01-24"],
+    ["id"=>78,"nom"=>"Impromptu Balade","ville"=>"Issoire","rue"=>"avenue des Arts","genre"=>"musical","lieu"=>"La Verrière, 9 avenue des Arts, Issoire","prix_eur"=>14.50,"date"=>"2027-01-29"],
+    ["id"=>79,"nom"=>"Audacieux Voyage","ville"=>"Hyeres","rue"=>"allée des Tilleuls","genre"=>"théâtral","lieu"=>"La Nef, 5 allée des Tilleuls, Hyères","prix_eur"=>19.00,"date"=>"2027-02-03"],
+    ["id"=>80,"nom"=>"Rêveur Rhapsodie","ville"=>"Brignoles","rue"=>"impasse des Lilas","genre"=>"musical","lieu"=>"Le Carillon, 3 impasse des Lilas, Brignoles","prix_eur"=>16.50,"date"=>"2027-02-08"],
+    ["id"=>81,"nom"=>"Nocturne Écho","ville"=>"Sarlat","rue"=>"rue des Écoles","genre"=>"théâtral","lieu"=>"Théâtre du Solstice, 4 rue des Écoles, Sarlat","prix_eur"=>17.50,"date"=>"2027-02-13"],
+    ["id"=>82,"nom"=>"Enchanté Balade","ville"=>"Bagnères-de-Bigorre","rue"=>"place Jean Jaurès","genre"=>"musical","lieu"=>"Salle des Fêtes, 6 place Jean Jaurès, Bagnères-de-Bigorre","prix_eur"=>13.50,"date"=>"2027-02-18"],
+    ["id"=>83,"nom"=>"Éphémère Parade","ville"=>"Savenay","rue"=>"boulevard Saint-Germain","genre"=>"humoristique","lieu"=>"La Scène du Nord, 2 boulevard Saint-Germain, Savenay","prix_eur"=>12.00,"date"=>"2027-02-23"],
+    ["id"=>84,"nom"=>"Merveilleux Fugue","ville"=>"Vesoul","rue"=>"rue Victor Hugo","genre"=>"poétique","lieu"=>"Espace Lumière, 1 rue Victor Hugo, Vesoul","prix_eur"=>15.00,"date"=>"2027-02-28"],
+    ["id"=>85,"nom"=>"Déroutant Résonance","ville"=>"Aubusson","rue"=>"rue du Pont","genre"=>"théâtral","lieu"=>"Petit Théâtre des Arts, 8 rue du Pont, Aubusson","prix_eur"=>14.00,"date"=>"2027-03-05"],
+    ["id"=>86,"nom"=>"Électrique Mirage","ville"=>"Oyonnax","rue"=>"quai des Vergers","genre"=>"musical","lieu"=>"Grande Halle, 2 quai des Vergers, Oyonnax","prix_eur"=>18.00,"date"=>"2027-03-10"],
+    ["id"=>87,"nom"=>"Sublime Carnaval","ville"=>"Gien","rue"=>"place du Château","genre"=>"classique","lieu"=>"La Cartoucherie, 5 place du Château, Gien","prix_eur"=>20.00,"date"=>"2027-03-15"],
+    ["id"=>88,"nom"=>"Baroque Voyage","ville"=>"Hesdin","rue"=>"rue des Écoles","genre"=>"théâtral","lieu"=>"Forum Saint-Martin, 3 rue des Écoles, Hesdin","prix_eur"=>13.00,"date"=>"2027-03-20"],
+    ["id"=>89,"nom"=>"Moderne Rêve","ville"=>"Figeac","rue"=>"avenue des Arts","genre"=>"expérimental","lieu"=>"La Fabrique, 2 avenue des Arts, Figeac","prix_eur"=>16.50,"date"=>"2027-03-25"],
+    ["id"=>90,"nom"=>"Intime Éclipse","ville"=>"Gourdon","rue"=>"rue Victor Hugo","genre"=>"musical","lieu"=>"La Rotonde, 7 rue Victor Hugo, Gourdon","prix_eur"=>15.50,"date"=>"2027-03-30"],
+    ["id"=>91,"nom"=>"Grand Mirage","ville"=>"Montauban","rue"=>"place Jean Jaurès","genre"=>"théâtral","lieu"=>"Studio 12, 6 place Jean Jaurès, Montauban","prix_eur"=>17.00,"date"=>"2027-04-04"],
+    ["id"=>92,"nom"=>"Lumineux Parade","ville"=>"Agen","rue"=>"rue du Pont","genre"=>"musical","lieu"=>"L\"Auditorium, 11 rue du Pont, Agen","prix_eur"=>18.50,"date"=>"2027-04-09"],
+    ["id"=>93,"nom"=>"Mystérieux Voyage","ville"=>"Chalon-sur-Saône","rue"=>"rue des Écoles","genre"=>"poétique","lieu"=>"Le Colombier, 2 rue des Écoles, Chalon-sur-Saône","prix_eur"=>16.00,"date"=>"2027-04-14"],
+    ["id"=>94,"nom"=>"Poétique Rhapsodie","ville"=>"Blois","rue"=>"place du Château","genre"=>"théâtral","lieu"=>"Le Carreau, 5 place du Château, Blois","prix_eur"=>14.50,"date"=>"2027-04-19"],
+    ["id"=>95,"nom"=>"Féroce Carnaval","ville"=>"Mérignac","rue"=>"rue Victor Hugo","genre"=>"de cirque","lieu"=>"Le Cloître, 10 rue Victor Hugo, Mérignac","prix_eur"=>19.50,"date"=>"2027-04-24"],
+    ["id"=>96,"nom"=>"Romantique Voyage","ville"=>"Sète","rue"=>"avenue du Parc","genre"=>"classique","lieu"=>"Salle Henri IV, 2 avenue du Parc, Sète","prix_eur"=>21.00,"date"=>"2027-04-29"],
+    ["id"=>97,"nom"=>"Comique Résonnance","ville"=>"Grasse","rue"=>"rue du Pont","genre"=>"humoristique","lieu"=>"Théâtre des Remparts, 3 rue du Pont, Grasse","prix_eur"=>13.00,"date"=>"2027-05-04"],
+    ["id"=>98,"nom"=>"Impromptu Mirage","ville"=>"Carcassonne","rue"=>"boulevard Saint-Germain","genre"=>"musical","lieu"=>"La Verrière, 6 boulevard Saint-Germain, Carcassonne","prix_eur"=>15.00,"date"=>"2027-05-09"],
+    ["id"=>99,"nom"=>"Audacieux Rêve","ville"=>"Saintes","rue"=>"place Jean Jaurès","genre"=>"théâtral","lieu"=>"La Nef, 2 place Jean Jaurès, Saintes","prix_eur"=>16.50,"date"=>"2027-05-14"],
+    ["id"=>100,"nom"=>"Rêveur Fugue","ville"=>"Sarlat","rue"=>"rue des Écoles","genre"=>"musical","lieu"=>"Le Carillon, 7 rue des Écoles, Sarlat","prix_eur"=>18.00,"date"=>"2027-05-19"],
+];
 ?>

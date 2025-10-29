@@ -3,7 +3,7 @@
         
         public function form() {
             if (!isset($_SESSION['user'])) {
-                header('Location: /login');
+                header('Location: /AuthSite/login');
                 exit;
             }
 
@@ -34,7 +34,7 @@
         
         public function reserver() {
             if (!isset($_SESSION['user'])) {
-                header('Location: /login');
+                header('Location: /AuthSite/login');
                 exit;
             }
 

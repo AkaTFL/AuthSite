@@ -2,8 +2,10 @@
 <html lang="fr">
 <head>
     <title>Mon profil</title>
+    <link rel="stylesheet" href="/AuthSite/assets/style.css">
 </head>
 <body>
+    <div class="container">
     <h1>Mon profil</h1>
     
     <p>Bienvenue, <strong><?php echo ($_SESSION['user']); ?></strong> !</p>
@@ -47,7 +49,8 @@
     
     <br>
     <p>
-        <a href="/">Retour à l'accueil</a> | <a href="/spectacles">Liste des spectacles</a>
+        <a href="/AuthSite/">Retour à l'accueil</a> | <a href="/AuthSite/spectacles">Liste des spectacles</a>
     </p>
+    </div>
 </body>
 </html>

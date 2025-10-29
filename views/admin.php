@@ -2,8 +2,10 @@
 <html>
 <head>
     <title>Admin</title>
+    <link rel="stylesheet" href="/AuthSite/assets/style.css">
 </head>
 <body>
+    <div class="container">
     <h1>Ajouter un spectacle</h1>
     
     <?php if (isset($msg) && $msg) echo "<p><strong>$msg</strong></p>"; ?>
@@ -16,6 +18,7 @@
         <button type="submit">Ajouter</button>
     </form>
     
-    <p><a href="/">Accueil</a> | <a href="/spectacles">Liste</a></p>
+    <p><a href="/AuthSite/">Accueil</a> | <a href="/AuthSite/spectacles">Liste</a></p>
+    </div>
 </body>
 </html>
