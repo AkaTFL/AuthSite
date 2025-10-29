@@ -1,13 +1,3 @@
-<?php
-    session_start();
-
-    // Vérification de l'authentification
-    if (!isset($_SESSION['user'])) {
-        header('Location: login.php');
-        exit;
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,14 +6,13 @@
 <body>
     <h1>Mon profil</h1>
     
-    <p>Bienvenue, <strong><?php echo ($_SESSION['user']); ?></strong> !</p>
+    <p>Bienvenue, <strong><?php echo htmlspecialchars($_SESSION['user']); ?></strong> !</p>
     
     <hr>
     
     <h2>Mes réservations</h2>
     
     <?php
-    // Vérifier si des réservations existent
     if (!isset($_SESSION['reservations']) || empty($_SESSION['reservations'])) {
         echo "<p>Vous n'avez effectué aucune réservation pour le moment.</p>";
     } else {
@@ -42,13 +31,13 @@
         foreach ($_SESSION['reservations'] as $reservation) {
             $total = $reservation['price'] * $reservation['qty'];
             echo "<tr>";
-            echo "<td>" . ($reservation['title']) . "</td>";
-            echo "<td>" . ($reservation['date']) . "</td>";
-            echo "<td>" . ($reservation['price']) . " €</td>";
-            echo "<td>" . ($reservation['name']) . "</td>";
-            echo "<td>" . ($reservation['qty']) . "</td>";
+            echo "<td>" . htmlspecialchars($reservation['title']) . "</td>";
+            echo "<td>" . htmlspecialchars($reservation['date']) . "</td>";
+            echo "<td>" . htmlspecialchars($reservation['price']) . " €</td>";
+            echo "<td>" . htmlspecialchars($reservation['name']) . "</td>";
+            echo "<td>" . htmlspecialchars($reservation['qty']) . "</td>";
             echo "<td>" . number_format($total, 2) . " €</td>";
-            echo "<td>" . (date('d/m/Y H:i', strtotime($reservation['reserved_at']))) . "</td>";
+            echo "<td>" . htmlspecialchars(date('d/m/Y H:i', strtotime($reservation['reserved_at']))) . "</td>";
             echo "</tr>";
         }
         
@@ -58,8 +47,8 @@
     
     <br>
     <p>
-        <a href="accueil.php">← Retour à l'accueil</a> | 
-        <a href="liste_spectacle.php">Liste des spectacles</a>
+        <a href="/">← Retour à l'accueil</a> | 
+        <a href="/spectacles">Liste des spectacles</a>
     </p>
 </body>
 </html>

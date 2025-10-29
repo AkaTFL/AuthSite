@@ -13,7 +13,7 @@ Les cas d'utilisation sont :
 <!-- - Page de fiche des spectacles (publique) -->
 <!-- - Réservation de places (authentification requise) -->
 <!-- - Accéder à son profils : liste des billets que j'ai reservé (authentification requise) page à faire -->
-- Ajouter des spectacles (authentification requise + rôle admin) page à faire
+<!-- - Ajouter des spectacles (authentification requise + rôle admin) page à faire -->
 
 Concernant les données, il n'y a pas d'obligations d'avoir une BDD
 
