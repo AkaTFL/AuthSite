@@ -22,3 +22,6 @@ Projet simple : liste de spectacles, réservation en session, admin pour ajouter
 - `.htaccess` redirige tout vers `index.php` pour le routeur (Apache).
 
 C'est tout — lancer le serveur et tester les routes.
+
+
+Partipant : Moi-même
